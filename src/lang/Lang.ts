@@ -1,4 +1,8 @@
 export const Lang = {
-	uz: {},
+	ru: {
+		modal: {
+			publish: '',
+		},
+	},
 	eng: {},
 };

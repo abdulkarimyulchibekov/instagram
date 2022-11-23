@@ -1,11 +1,4 @@
-import {
-	Stack,
-	TextField,
-	IconButton,
-	Toolbar,
-	Box,
-	AppBar,
-} from '@mui/material';
+import { Stack, IconButton, Toolbar, Box, AppBar } from '@mui/material';
 import { Logo } from '../../assets/images/logo.jsx';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -30,12 +23,13 @@ export default function DrawerAppBar() {
 					direction={'row'}
 					justifyContent={'space-between'}
 					alignItems={'center'}>
-					<Logo />
-					<TextField
-						style={{ height: 60 }}
-						id='outlined-basic'
-						label='Search...'
-						variant='outlined'
+					<Link to={'/'}>
+						<Logo />
+					</Link>
+					<input
+						className='header-input'
+						style={{ height: 45, color: 'black' }}
+						placeholder='Search...'
 					/>
 					<Stack spacing={2} direction={'row'} style={{ marginRight: 10 }}>
 						<NavLink
@@ -71,7 +65,7 @@ export default function DrawerAppBar() {
 								src='https://picsum.photos/42'
 								width={42}
 								height={42}
-								alt='Your account image'
+								alt='Your account logo'
 							/>
 						</Link>
 					</Stack>

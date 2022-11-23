@@ -14,7 +14,7 @@ export const HomeTop = () => {
 						{list
 							.filter((e: User) => e.isFollowed)
 							.map((e: User) => {
-								return <HomeTopItem e={e} />;
+								return <HomeTopItem key={e.id} e={e} />;
 							})}
 					</>
 				)}

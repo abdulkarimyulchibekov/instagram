@@ -9,7 +9,7 @@ export const HomeContent = () => {
 			{posts.length && (
 				<List>
 					{posts.map((e) => (
-						<HomeContentItem e={e} />
+						<HomeContentItem key={e.id} e={e} />
 					))}
 				</List>
 			)}

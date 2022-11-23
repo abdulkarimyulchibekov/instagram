@@ -52,7 +52,7 @@ let usersStore: usersStore = (set) => ({
 			isFollowed: false,
 		},
 		{
-			name: 'Muhammad',
+			name: 'Abdulkarim Yulchibekov',
 			id: 8,
 			isFollowed: true,
 		},
