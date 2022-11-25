@@ -6,9 +6,13 @@
   background-image: url('../../assets/images/lupa.png');
   background-repeat: no-repeat;
   padding-left: 40px;
-  background-color: rgb(70, 68, 68);
+  background-color: #EFEFEF;
   border: 0;
   color: #00000000;
   background-position: 10px;
   border-radius: 12px;
+
+  &:focus {
+    background-size: 0px 0px;
+  }
 }

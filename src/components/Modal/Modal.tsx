@@ -20,8 +20,8 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 // import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { CommentItem } from '../CommentItem/CommentItem';
-import './modal.scss';
 import { useTranslation } from 'react-i18next';
+import './modal.scss';
 
 const style = {
 	position: 'absolute' as 'absolute',
@@ -86,9 +86,11 @@ export function NestedModal({ open, setOpen, e }: IProps) {
 		(el) => el.id === e.userId,
 	);
 
-	const comments = useCommentsStore((state) => state.comments).find(
-		(el) => el.postId === e.id,
-	)?.comments;
+	const comments = useCommentsStore((state) => state.comments).find((el) => {
+		return el.postId === e.id;
+	})?.comments;
+
+	console.log(comments);
 
 	const save = useSaveStore((state) => state.saved);
 

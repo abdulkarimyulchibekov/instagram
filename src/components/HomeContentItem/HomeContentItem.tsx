@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Post } from '../../Data/UsePostsStore';
 import { Button, Stack, Typography, IconButton, Box } from '@mui/material';
 import { useUsersStore } from '../../Data/UseUsersStore';
@@ -11,8 +11,9 @@ import { useCommentsStore } from '../../Data/UseCommentsStore';
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { NestedModal } from '../Modal/Modal';
-import './index.scss';
 import { useSaveStore } from '../../Data/UseSavedStore';
+import { Comment } from '../../Data/UseCommentsStore';
+import './index.scss';
 
 interface IProps {
 	e: Post;
@@ -27,9 +28,27 @@ export const HomeContentItem = ({ e }: IProps) => {
 	const [hidden, setHidden] = useState('desc');
 	const [isHidden, setIsHidden] = useState(false);
 	const [open, setOpen] = useState(false);
+	const [isSubmit, setIsSubmit] = useState(false);
+	const inputRef = useRef<any>(null);
 
 	const comments = useCommentsStore((state) => state.comments);
 	const comment = comments.find((el) => e.id === el.postId);
+	const addComment = useCommentsStore((state) => state.addComment);
+	const handleSubmit = () => {
+		let arr: Comment[] = [];
+		if (comment?.comments) {
+			arr = [
+				...comment?.comments,
+				{ id: arr.length, userId: 0, content: inputRef.current.value },
+			];
+		} else {
+			arr = [{ id: 1, userId: 0, content: inputRef.current.value }];
+		}
+		addComment(arr, e.id);
+		// console.log(e);
+		inputRef.current.value = '';
+		setIsSubmit(!isSubmit);
+	};
 
 	const func: () => void = () =>
 		hidden === 'casual'
@@ -142,11 +161,14 @@ export const HomeContentItem = ({ e }: IProps) => {
 						<SentimentSatisfiedOutlinedIcon />
 					</IconButton>
 					<input
+						ref={inputRef}
 						placeholder='добавьте комментарий...'
 						className='item__input'
 						type='text'
 					/>
-					<Button variant='text'>Oпубликовать</Button>
+					<Button onClick={handleSubmit} variant='text'>
+						Oпубликовать
+					</Button>
 				</Stack>
 			</Box>
 			<NestedModal open={open} setOpen={setOpen} e={e} />
