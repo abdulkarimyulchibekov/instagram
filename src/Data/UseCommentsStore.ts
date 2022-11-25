@@ -678,6 +678,7 @@ let commentsStore: CommentsStore = (set) => ({
 				item.comments = arr;
 				return state.comments;
 			}
+			return state.comments;
 		}),
 });
 

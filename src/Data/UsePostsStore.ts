@@ -4,14 +4,14 @@ export type Post = {
 	id: number;
 	desc: string;
 	userId: number;
-	love?: number;
+	love: number;
 };
 
-export type postsStore = (set: Function) => {
+export type posts = (set: Function) => {
 	posts: Post[];
 };
 
-let postsStore: postsStore = (set) => ({
+let postsStore: posts = (set) => ({
 	posts: [
 		{
 			id: 1,

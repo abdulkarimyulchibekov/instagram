@@ -17,7 +17,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-// import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { CommentItem } from '../CommentItem/CommentItem';
 import { useTranslation } from 'react-i18next';
@@ -38,6 +38,8 @@ interface IProps {
 	open: boolean;
 	setOpen: Function;
 	e: Post;
+	love: boolean;
+	setLove: Function;
 }
 
 function ChildModal() {
@@ -75,7 +77,7 @@ function ChildModal() {
 	);
 }
 
-export function NestedModal({ open, setOpen, e }: IProps) {
+export function NestedModal({ open, setOpen, e, love, setLove }: IProps) {
 	const { t } = useTranslation();
 
 	const handleClose = () => {
@@ -90,9 +92,22 @@ export function NestedModal({ open, setOpen, e }: IProps) {
 		return el.postId === e.id;
 	})?.comments;
 
-	console.log(comments);
-
 	const save = useSaveStore((state) => state.saved);
+	const addSaved = useSaveStore((state) => state.addSaved);
+	const deleteSaved = useSaveStore((state) => state.deleteSaved);
+
+	const [isSubmit, setIsSubmit] = useState(false);
+
+	const handleClick = () => {
+		if (save.includes(e.id)) {
+			deleteSaved(e.id);
+			console.log('if is working');
+		} else {
+			console.log('else is working');
+			addSaved(e.id);
+		}
+		setIsSubmit(!isSubmit);
+	};
 
 	const inputRef = useRef<any>(null);
 
@@ -177,8 +192,8 @@ export function NestedModal({ open, setOpen, e }: IProps) {
 								justifyContent={'space-between'}
 								alignItems={'start'}>
 								<Stack direction={'row'} spacing={1}>
-									<IconButton>
-										<FavoriteBorderOutlinedIcon />
+									<IconButton className='filled' onClick={() => setLove(!love)}>
+										{love ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
 									</IconButton>
 									<IconButton onClick={() => inputRef.current.focus()}>
 										<ChatBubbleOutlineOutlinedIcon />
@@ -187,7 +202,11 @@ export function NestedModal({ open, setOpen, e }: IProps) {
 										<SendOutlinedIcon />
 									</IconButton>
 								</Stack>
-								<IconButton className='filled'>
+								<IconButton
+									onClick={() => {
+										handleClick();
+									}}
+									className='filled'>
 									{save.includes(e.id) ? (
 										<BookmarkIcon />
 									) : (

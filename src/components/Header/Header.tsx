@@ -12,8 +12,6 @@ import { Explore } from '../../pages/Explore/Explore';
 import { Account } from '../../pages/Account/Account';
 import './index.scss';
 
-const navItems = ['Home', 'About', 'Contact'];
-
 export default function DrawerAppBar() {
 	return (
 		<Box sx={{ display: 'flex' }}>
@@ -62,7 +60,7 @@ export default function DrawerAppBar() {
 						<Link to='/account'>
 							<img
 								style={{ borderRadius: '50%' }}
-								src='https://picsum.photos/42'
+								src='https://picsum.photos/id/0/42'
 								width={42}
 								height={42}
 								alt='Your account logo'
