@@ -215,7 +215,7 @@ export function NestedModal({ open, setOpen, e, love, setLove }: IProps) {
 								</IconButton>
 							</Stack>
 							<Typography style={{ paddingLeft: 10 }} variant='body1'>
-								{e.love} отметок "Нравится"
+								{love ? e.love + 1 : e.love} отметок "Нравится"
 							</Typography>
 							<Stack
 								sx={{ marginTop: 2 }}
