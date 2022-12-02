@@ -1,5 +1,6 @@
 import React from 'react';
+import { MainChatLayout } from './Chat.styles';
 
 export const Chat = () => {
-	return <div>Chat</div>;
+	return <MainChatLayout>Chat</MainChatLayout>;
 };
