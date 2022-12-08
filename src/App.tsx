@@ -3,7 +3,6 @@ import { Lang } from './lang/Lang';
 import { initReactI18next } from 'react-i18next';
 import './assets/styles/index.scss';
 import DrawerAppBar from './components/Header/Header';
-import { Routes } from 'react-router-dom';
 
 i18n.use(initReactI18next).init({
 	fallbackLng: 'eng',
@@ -20,7 +19,6 @@ function App() {
 	return (
 		<div className='App'>
 			<DrawerAppBar />
-			<Routes></Routes>
 		</div>
 	);
 }

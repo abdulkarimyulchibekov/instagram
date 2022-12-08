@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainRightTopLayout } from '../../layouts/Home/HomeRight.style';
 
@@ -14,7 +13,7 @@ export const HomeRightTop = () => {
 				alt='user logo'
 				className='home__logo'
 			/>
-			<div className=''>
+			<div>
 				<p className='home__text'>nobody_knows2336</p>
 				<p className='home__desc'>Abdulkarim Yulchibekov</p>
 			</div>

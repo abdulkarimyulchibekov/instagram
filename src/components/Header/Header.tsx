@@ -11,8 +11,11 @@ import { Chat } from '../../pages/Chat/Chat';
 import { Explore } from '../../pages/Explore/Explore';
 import { Account } from '../../pages/Account/Account';
 import './index.scss';
+import { HomeModal } from '../HomeModal/HomeModal';
+import { useState } from 'react';
 
 export default function DrawerAppBar() {
+	const [open, setOpen] = useState(false);
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<AppBar style={{ background: '#fff' }} component='nav'>
@@ -44,7 +47,7 @@ export default function DrawerAppBar() {
 								<ChatIcon />
 							</IconButton>
 						</NavLink>
-						<IconButton>
+						<IconButton onClick={() => setOpen(true)}>
 							<AddCircleOutlinedIcon />
 						</IconButton>
 						<NavLink
@@ -77,6 +80,7 @@ export default function DrawerAppBar() {
 					<Route path='/explore' element={<Explore />} />
 					<Route path='/account' element={<Account />} />
 				</Routes>
+				<HomeModal open={open} setOpen={setOpen} />
 			</Box>
 		</Box>
 	);
